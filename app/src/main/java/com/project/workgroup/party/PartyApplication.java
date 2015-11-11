@@ -5,6 +5,7 @@ import android.app.Application;
 import com.project.workgroup.party.injector.AppModule;
 import com.project.workgroup.party.injector.components.AppComponent;
 
+
 /**
  * Created by Junior on 10/11/2015.
  */

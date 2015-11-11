@@ -10,7 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.project.workgroup.party.PartyApplication;
 import com.project.workgroup.party.R;
+
+import com.project.workgroup.party.injector.components.DaggerEventsComponent;
+import com.project.workgroup.party.injector.modules.ActivityModule;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,6 +34,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        initializeDependencyInjector();
     }
 
     @Override
@@ -40,6 +46,14 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void  initializeDependencyInjector(){
+        PartyApplication app = (PartyApplication)getApplication();
+        DaggerEventsComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .appComponent(app.getAppComponent())
+                .build().inject(this);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.project.workgroup.party.domain;
 
+import android.util.Log;
+
 import com.project.workgroup.party.model.entities.Event;
 import com.project.workgroup.party.model.repository.Repository;
 
@@ -16,11 +18,13 @@ import rx.schedulers.Schedulers;
  */
 public class GetEventsUsecase implements Usecase<List<Event>> {
 
+    private static final  String  TAG = GetEventsUsecase.class.getName();
     public final static int EVENTS_lIMIT = 35;
     private final Repository mRepository;
 
     @Inject public GetEventsUsecase(Repository repository){
         mRepository = repository;
+        Log.e(TAG,"se inyecto GetEventsUsecase");
     }
 
     @Override

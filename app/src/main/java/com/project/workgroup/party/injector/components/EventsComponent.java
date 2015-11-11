@@ -1,5 +1,7 @@
 package com.project.workgroup.party.injector.components;
 
+import android.content.Context;
+
 import com.project.workgroup.party.injector.modules.ActivityModule;
 
 import dagger.Component;
@@ -11,6 +13,8 @@ import com.project.workgroup.party.views.activities.MainActivity;
  */
 @Activity
 @Component(dependencies = AppComponent.class, modules = {ActivityModule.class})
-public interface EventsComponent {
+public interface EventsComponent extends ActivityComponent {
     void inject (MainActivity activity);
+
+    Context activityContext();
 }

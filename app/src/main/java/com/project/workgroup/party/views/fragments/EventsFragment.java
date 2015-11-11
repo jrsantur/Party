@@ -1,37 +1,39 @@
 package com.project.workgroup.party.views.fragments;
 
 
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.project.workgroup.party.R;
+import com.project.workgroup.party.model.entities.Event;
+import com.project.workgroup.party.mvp.presenter.EventListPresenter;
+import com.project.workgroup.party.mvp.views.EventsView;
+import com.project.workgroup.party.views.RecyclerClickListener;
+
+import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link EventsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EventsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class EventsFragment extends Fragment  implements EventsView, RecyclerClickListener{
 
 
+    @Inject
+    EventListPresenter eventListPresenter;
 
-    // TODO: Rename and change types and number of parameters
+
     public static EventsFragment newInstance(String param1, String param2) {
         EventsFragment fragment = new EventsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,10 +45,7 @@ public class EventsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        initializePresenter();
     }
 
     @Override
@@ -57,4 +56,78 @@ public class EventsFragment extends Fragment {
     }
 
 
+    @Override
+    public void bindEventList(List<Event> events) {
+    }
+
+
+    @Override
+    public void showEventList() {
+
+    }
+
+    @Override
+    public void hideEventsList() {
+
+    }
+
+    @Override
+    public void hideLoadingIndicador() {
+
+    }
+
+    @Override
+    public void showLoadinView() {
+
+    }
+
+    @Override
+    public void hideLoadinView() {
+
+    }
+
+    @Override
+    public void showLightError() {
+
+    }
+
+    @Override
+    public void showErrorView(String errorMenssage) {
+
+    }
+
+    @Override
+    public void hideErrorView() {
+
+    }
+
+    @Override
+    public void showEmptyIndicator() {
+
+    }
+
+    @Override
+    public void hideEmptyIndicator() {
+
+    }
+
+    @Override
+    public void updateEventList(int eventsLimit) {
+
+    }
+
+    @Override
+    public ActivityOptions getActivityOptions(int position, View clickView) {
+        return null;
+    }
+
+    @Override
+    public void onElementClick(int position, View sharedView, ImageView characterImageView) {
+
+    }
+
+    private void initializePresenter(){
+        eventListPresenter.attachView(this);
+        eventListPresenter.onCreate();
+    }
 }

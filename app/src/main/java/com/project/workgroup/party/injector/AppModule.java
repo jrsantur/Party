@@ -24,8 +24,7 @@ public class AppModule {
     @Provides @Singleton PartyApplication providerPartyApplication(){
         return mPartyApplication;
     }
-    @Provides @Singleton
-    Repository providerDataRepository (RestRepository restRepository){
+    @Provides @Singleton Repository providerDataRepository (RestRepository restRepository){
         return restRepository;
     }
 

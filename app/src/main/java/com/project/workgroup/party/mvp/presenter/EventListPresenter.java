@@ -23,7 +23,7 @@ import rx.Subscription;
 /**
  * Created by Junior on 10/11/2015.
  */
-public class EventListPresenter implements Presenter, RecyclerClickListener {
+public class EventListPresenter implements Presenter {
 
     private final GetEventsUsecase mGetEventsUsecase;
     private final Context mContext;
@@ -98,7 +98,7 @@ public class EventListPresenter implements Presenter, RecyclerClickListener {
             String errorMessage = mContext.getString(R.string.error_network_uknownhost);
             mEventsView.showErrorView(errorMessage);
         }else if(error instanceof ServerErrorException){
-            String errorMessage = mContext.getString(R.string.error_network_marvel_server);
+            String errorMessage = mContext.getString(R.string.error_network_party_server);
             mEventsView.showErrorView(errorMessage);
         }
         mEventsView.hideEmptyIndicator();
@@ -110,10 +110,4 @@ public class EventListPresenter implements Presenter, RecyclerClickListener {
         mEventsView.showLightError();
     }
 
-
-    @Override
-    public void onElementClick(int position, android.view.View sharedView, ImageView characterImageView) {
-
-
-    }
 }
